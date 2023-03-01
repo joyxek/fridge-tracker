@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Roboto&display=swap');
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: bisque;
+  font-family: Roboto;
+  color: rgb(38, 38, 195);
+}
+
+
+.title {
+  font-size: 30px;
+}
+
+.smaller-title {
+  font-size: 20px;
+}
+
+
+.search-bar {
+  height: 30px;
+  width: 500px;
+  color: rgba(0, 0, 0, 0.365);
+}
+
+.search-button {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+
+.search-button-text {
+  width: 100px;
+  height: 35px;
+  color: black;
+}
