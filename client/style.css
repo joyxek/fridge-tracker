@@ -1,12 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&family=Roboto&display=swap');
+body {
+  margin:0;
+  padding:0;
+  background-color: rgb(245, 229, 208);
+  display: flex;
+  justify-content: center;
+  font-family: Roboto;
+}
 
 .intro {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: bisque;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0,0,0,0.05) 0 6 px 24px, rgba(0,0,0, 0.08) 0 0 0 1px;
   font-family: Roboto;
-  color: rgb(38, 38, 195);
+  padding: 10px;
+  width: 800px;
+  margin-top: 50px;
+  color: rgb(6, 6, 6);
+  border-radius: 5px;
+}
+
+.button-container {
+  display: flex;
+}
+
+.button-container button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border-radius: 12px;
+  background-color: transparent;
+  font-size: 10px;
 }
 
 
@@ -25,10 +50,6 @@
   color: rgba(0, 0, 0, 0.365);
 }
 
-.search-button {
-  display: flex;
-  justify-content: space-around;
-}
 
 
 
@@ -36,4 +57,9 @@
   width: 100px;
   height: 35px;
   color: black;
+}
+
+.users-inputs {
+  display: flex;
+  flex-direction: column;
 }
