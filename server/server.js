@@ -1,4 +1,5 @@
 const express = require('express');
+const PORT = process.env.PORT ?? 8000
 const app = express();
 const path = require('path');
 
@@ -7,7 +8,7 @@ app.get('/', (req,res) => {
 });
 
 
-app.listen(3000, () => {
-  console.log('Server is listening on Port 3000');
+app.listen(PORT, () => {
+  console.log (`Server is listening on Port ${PORT}`);
 });
 
