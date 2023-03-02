@@ -2,7 +2,7 @@ import React from 'react';
 import * as async_hooks from 'async_hooks';
 import '../style.css';
 import { useState } from 'react';
-import { AddModal, EditModal } from './modal'
+import { AddModal, EditModal, DeleteModal } from './modal'
 
 // props sent through are ListName (header) and getData (which stores an object with everything)
 function Input({ listName, getData }) {
@@ -17,19 +17,9 @@ function Input({ listName, getData }) {
   // declaring state for whether edit modal will open
   const [ editModal, setEditModal ] = useState(false)
   
-  // onClick of delete button calling a fetch request to the delete method 
-  const deleteItem = async () => {
-    try {
-      const response = await fetch( `http://localhost:8000/foodlist/${getData.id}`, {
-        method: 'DELETE'
-      })
-      if (response.status === 200) {
-        getData();
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  }
+  // declaring state for whether delete modal will open
+  const [ deleteModal, setDeleteModal ] = useState(false)
+ 
   
   return (
     <div className="intro">
@@ -38,13 +28,13 @@ function Input({ listName, getData }) {
       <div className="button-container">
         <button className="add" onClick={() => setAddModal(true)}>Add</button>
         <button className="edit" onClick={() => setEditModal(true)}>EDIT</button>
-        <button className="delete" onClick={deleteItem}>DELETE</button>
+        <button className="delete" onClick={() => setDeleteModal(true)}>DELETE</button>
       </div>
       <div>
-      {addModal && <AddModal mode={'create'} setShowModal={setAddModal} foodList={getData} />}
-      {editModal && <EditModal mode={'edit'} setShowModal={setEditModal} foodList={getData} />}
+      {addModal && <AddModal mode={'create'} setShowModal={setAddModal} getData={getData} />}
+      {editModal && <EditModal mode={'edit'} setShowModal={setEditModal} getData={getData} />}
+      {deleteModal && <DeleteModal mode={'delete'} setShowModal={setEditModal} getData={getData} />}
       </div>
-
     </div>
   )
 };

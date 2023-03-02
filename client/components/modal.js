@@ -4,26 +4,26 @@ import React from 'react';
 // import e from 'express';
 import * as async_hooks from 'async_hooks';
 
-const EditModal = ({ mode, setShowModal, foodList }) => {
+const EditModal = ({ mode, setShowModal, getData }) => {
 
-  const [ data, setdata ] = useState({
-    user_email: foodList.user_email,
-    food: foodList.food,
-    expiration: foodList.expiration,
-    date: foodList.date
+  const [ data, setData ] = useState({
+    user_email: getData.user_email,
+    food: getData.food,
+    expiration: getData.expiration,
+    date: getData.date
   });
 
    const editData = async (e) => {
     e.preventDefault();
     try {
-       const response = await fetch(`http://localhost:8000/foodlist/${foodList.id}`, {
+       const response = await fetch(`http://localhost:8000/foodlist/${getData.id}`, {
         method: "PUT",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
        })
        if (response.status === 200) {
         setShowModal(false)
-        foodList();
+        getData();
        }
     } catch (err) {
       console.error(err);
@@ -48,6 +48,10 @@ const handleChange = (e) => {
         <div>
           {/* when user clicks the buttons 'add' 'edit' this modal should open with the user's text button in the heading */}
           <h3>Let's {mode} your groceries</h3>
+
+          {/* render your already existing database */}
+          <h3>here's what you already have: </h3>
+
           <button onClick={() => setShowModal(false)}>X</button>
         </div>
 
@@ -82,11 +86,7 @@ const handleChange = (e) => {
 
 }
 
-
-
-
-
-const AddModal = ({ mode, setShowModal, foodList }) => {
+const AddModal = ({ mode, setShowModal, getData }) => {
 
 
   const [ data, setData ] = useState({
@@ -110,7 +110,7 @@ const AddModal = ({ mode, setShowModal, foodList }) => {
       if (response.status === 200) {
         console.log('POSTING SUCCESS');
         setShowModal(false);
-        foodList();
+        getData(); // this is not a function
       }
       console.log(response);
     } catch {
@@ -169,4 +169,64 @@ const AddModal = ({ mode, setShowModal, foodList }) => {
 
 }
 
-export { AddModal, EditModal };
+const DeleteModal = ({ mode, setShowModal, getData }) => {
+
+  const [ data, setData ] = useState({
+      user_email: getData.user_email,
+      food: getData.food,
+      expiration: getData.expiration,
+      date: getData.date
+    });
+
+  // onClick of delete button calling a fetch request to the delete method 
+  const deleteData = async () => {
+    try {
+      const response = await fetch( `http://localhost:8000/foodlist/${getData.id}`, {
+        method: 'DELETE'
+      })
+      if (response.status === 200) {
+        console.log('DELETE ITEM SUCCESS');
+        getData(); // this is not a function
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  const handleChange = (e) => {
+    console.log('changing',e);
+    const { name, value } = e.target;
+
+    setData(data => ({
+      ...data,
+      [name] : value
+    }))
+
+    console.log(data);
+  }
+
+  return (
+    <div>
+      <div>
+        <div>
+          {/* when user clicks the buttons 'add' 'edit' this modal should open with the user's text button in the heading */}
+          <h3>Let's {mode} your groceries</h3>
+          <button onClick={() => setShowModal(false)}>X</button>
+        </div>
+
+        <form>
+          <input
+            required
+            maxLength={30}
+            placeholder=" delete something"
+            name="food"
+            onChange={handleChange}
+          />
+          <input type="Submit" onClick={deleteData} />
+        </form>
+      </div>
+    </div>
+  )
+
+}
+export { AddModal, EditModal, DeleteModal };

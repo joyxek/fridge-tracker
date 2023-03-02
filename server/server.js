@@ -22,7 +22,7 @@ app.get('/foodlist/:userEmail', async (req,res) => {
     // grab the query and send the rows of that query into res
     res.json(food[0].rows); // CHANGED THIS!!!
   } catch (err) {
-    console.log('error')
+    console.log('error getting data')
   }
 });
 
@@ -35,7 +35,7 @@ app.post('/foodlist', async (req,res) => {
     [id, user_email, food, date, expiration])
     res.json(newFood);
   } catch (err) {
-    console.error(err)
+    console.log('error creating a new grocery item')
   }
 })
 
@@ -49,7 +49,7 @@ app.put('/foodlist/:id', async (req,res) => {
     )
     res.json(editFoods);
   } catch (err) {
-    console.error(err)
+    console.log('error editing grocery item')
   }
 })
 
@@ -60,7 +60,7 @@ app.delete('/foodlist/:id', async (req,res) => {
     const deletedFood = await pool.query('DELETE FROM foods WHERE id = $1', [id]);
     res.json(deletedFood)
   } catch (err) {
-    console.error(err)
+    console.log('error deleting data')
   }
 })
 

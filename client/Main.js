@@ -41,7 +41,7 @@ function Main() {
 
   return (
     <div>
-      <Input listName={'Your groceries 🥑'} getData={foodItem} />
+      <Input listName={'Your groceries 🥑'} getData={getData}/>
       <ListInput getData={getData}/>
     </div>
   )
