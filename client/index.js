@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
 import Main from './Main';
+import * as async_hooks from 'async_hooks';
 
 const container = document.getElementById('root');
 const root = createRoot(container);

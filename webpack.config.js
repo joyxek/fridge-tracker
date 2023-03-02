@@ -2,8 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
-
 module.exports = {
   entry: './client/index.js',
   output: {
@@ -35,5 +33,11 @@ module.exports = {
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
-  },
+    fallback: {
+      async_hooks: false,
+    },
+  }
 };
+
+
+

@@ -1,22 +1,17 @@
 import React from 'react';
 import '../style.css';
-import Main from 'react';
-import { useState } from 'react';
+import * as async_hooks from 'async_hooks';
+// import Main from 'react';
+// import { useState } from 'react';
+// import { Modal } from './modal'
 
 
-const ListInput = ({ food }) => {
+const ListInput = ({ getData }) => {
+  // const [showModal, setShowModal] = useState(false);
   return (
-    <li>
-      <p>
-        {food.food}
-      </p>
-      <div className="button-container">
-        <button className="edit">EDIT</button>
-        <button className="delete">DELETE</button>
-      </div>
-    </li>
-
-    
+    <div>
+      {console.log('this is food from listInput: ', getData)};
+    </div>
   )
 }
 export { ListInput };

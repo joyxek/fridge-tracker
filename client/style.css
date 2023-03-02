@@ -26,6 +26,7 @@ body {
   display: flex;
 }
 
+/* houses the 'add' 'edit' 'delete' button */
 .button-container button {
   margin: 0 5px;
   padding: 5px 10px;
