@@ -3,6 +3,8 @@ import React from 'react';
 // not sure what this import is doing?
 // import e from 'express';
 import * as async_hooks from 'async_hooks';
+// import e from 'express'; DONT UNCOMMENT THIS CAUSES A MILLION WEBPACK ERRORS
+
 
 const EditModal = ({ mode, setShowModal, getData }) => {
 
@@ -44,19 +46,20 @@ const handleChange = (e) => {
 
   return (
     <div>
-      <div>
+      <div className="modal-home">
         <div>
           {/* when user clicks the buttons 'add' 'edit' this modal should open with the user's text button in the heading */}
+          <button className="x-button" onClick={() => setShowModal(false)}>X</button>
           <h3>Let's {mode} your groceries</h3>
 
           {/* render your already existing database */}
           <h3>here's what you already have: </h3>
 
-          <button onClick={() => setShowModal(false)}>X</button>
         </div>
 
         <form>
           <input
+            className="any-input"
             required
             maxLength={30}
             placeholder=" edit item"
@@ -65,6 +68,7 @@ const handleChange = (e) => {
           />
           <br/>
           <input
+            className="any-input"
             required
             maxLength={30}
             placeholder=" edit expiration"
@@ -73,11 +77,12 @@ const handleChange = (e) => {
           />
           <br />
           <input 
+            className="any-input"
             required
             placeholder=" edit date"
             onChange={handleChange}
           />
-          <input type="Submit" onClick={editData} />
+          <input className="x-button" type="Submit" onClick={editData} />
         </form>
       </div>
     </div>
@@ -132,23 +137,25 @@ const AddModal = ({ mode, setShowModal, getData }) => {
 
   return (
     <div>
-      <div>
+      <div className="modal-home">
         <div>
           {/* when user clicks the buttons 'add' 'edit' this modal should open with the user's text button in the heading */}
+          <button className="x-button" onClick={() => setShowModal(false)}>X</button>
           <h3>Let's {mode} your groceries</h3>
-          <button onClick={() => setShowModal(false)}>X</button>
         </div>
 
         <form>
           <input
+            className="any-input"
             required
             maxLength={30}
-            placeholder=" add something"
+            placeholder=" add item"
             name="food"
             onChange={handleChange}
           />
           <br/>
           <input
+            className="any-input"
             required
             maxLength={30}
             placeholder=" expiration"
@@ -156,12 +163,7 @@ const AddModal = ({ mode, setShowModal, getData }) => {
             onChange={handleChange}
           />
           <br />
-          <input 
-            required
-            placeholder=" date"
-            onChange={handleChange}
-          />
-          <input type="Submit" onClick={postData} />
+          <input className="x-button" type="Submit" onClick={postData} />
         </form>
       </div>
     </div>
@@ -181,17 +183,18 @@ const DeleteModal = ({ mode, setShowModal, getData }) => {
   // onClick of delete button calling a fetch request to the delete method 
   const deleteData = async () => {
     try {
-      const response = await fetch( `http://localhost:8000/foodlist/${getData.id}`, {
+      const response = await fetch(`http://localhost:8000/foodlist/${getData.food}`, {
         method: 'DELETE'
       })
       if (response.status === 200) {
         console.log('DELETE ITEM SUCCESS');
-        getData(); // this is not a function
+        getData();
       }
     } catch (err) {
       console.error(err);
     }
   }
+
 
   const handleChange = (e) => {
     console.log('changing',e);
@@ -201,32 +204,32 @@ const DeleteModal = ({ mode, setShowModal, getData }) => {
       ...data,
       [name] : value
     }))
-
     console.log(data);
   }
 
   return (
     <div>
-      <div>
+      <div className="modal-home">
         <div>
           {/* when user clicks the buttons 'add' 'edit' this modal should open with the user's text button in the heading */}
+          <button className="x-button" onClick={() => setShowModal(false)}>X</button>
           <h3>Let's {mode} your groceries</h3>
-          <button onClick={() => setShowModal(false)}>X</button>
         </div>
 
         <form>
           <input
+            className="any-input"
             required
             maxLength={30}
             placeholder=" delete something"
             name="food"
             onChange={handleChange}
           />
-          <input type="Submit" onClick={deleteData} />
+          <input className="x-button" type="Submit" onClick={deleteData} />
         </form>
       </div>
     </div>
   )
+};
 
-}
 export { AddModal, EditModal, DeleteModal };

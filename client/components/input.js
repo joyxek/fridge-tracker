@@ -33,7 +33,7 @@ function Input({ listName, getData }) {
       <div>
       {addModal && <AddModal mode={'create'} setShowModal={setAddModal} getData={getData} />}
       {editModal && <EditModal mode={'edit'} setShowModal={setEditModal} getData={getData} />}
-      {deleteModal && <DeleteModal mode={'delete'} setShowModal={setEditModal} getData={getData} />}
+      {deleteModal && <DeleteModal mode={'delete'} setShowModal={setDeleteModal} getData={getData} />}
       </div>
     </div>
   )

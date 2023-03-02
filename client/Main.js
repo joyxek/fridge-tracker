@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './style.css';
 // import my components here
 import { Input } from './components/input';
-import { ListInput } from './components/ListInput';
+// import { ListInput } from './components/ListInput';
 import * as async_hooks from 'async_hooks';
 // import Auth from './components/Auth';
 // import { ids } from 'webpack';
@@ -42,7 +42,7 @@ function Main() {
   return (
     <div>
       <Input listName={'Your groceries 🥑'} getData={getData}/>
-      <ListInput getData={getData}/>
+      {/* <ListInput getData={getData}/> */}
     </div>
   )
 };

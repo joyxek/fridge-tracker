@@ -40,12 +40,12 @@ app.post('/foodlist', async (req,res) => {
 })
 
 // edit food item
-app.put('/foodlist/:id', async (req,res) => {
-  const { id } = req.params;
+app.put('/foodlist/:food', async (req,res) => {
+  // this is the new info coming from req that the user wants to update with 
   const { user_email, food, date, expiration } = req.body;
   try {
-    const editFoods = await pool.query('UPDATE foods SET user_email = $1, food = $2, date = $3, expiration = $4 WHERE id = $5;',
-      [user_email, food, date, expiration, id]
+    const editFoods = await pool.query('UPDATE foods SET user_email = $1, food = $2, date = $3, expiration = $4 WHERE food = $2;',
+      [user_email, food, date, expiration]
     )
     res.json(editFoods);
   } catch (err) {
@@ -54,10 +54,11 @@ app.put('/foodlist/:id', async (req,res) => {
 })
 
 // delete a food item
-app.delete('/foodlist/:id', async (req,res) => {
-  const { id } = req.params;
+app.delete('/foodlist/:food', async (req,res) => {
+  const { food } = req.params;
   try {
-    const deletedFood = await pool.query('DELETE FROM foods WHERE id = $1', [id]);
+    const deletedFood = await pool.query('DELETE FROM foods WHERE food = $1;', [food]);
+    console.log(`deleted ${food}`);
     res.json(deletedFood)
   } catch (err) {
     console.log('error deleting data')
