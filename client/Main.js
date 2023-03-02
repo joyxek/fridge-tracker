@@ -29,7 +29,7 @@ function Main() {
       // }]
       const response = await fetch(`http://localhost:8000/foodlist/${userEmail}`);
       const usersFood = await response.json();
-      console.log(usersFood);
+      console.log('this is from main.js, (expecting an object): ', usersFood);
       // using state function to set my foodItem to what is at the response json at index 0 on the key food
       setFood(usersFood[0]);
     } catch (err) {

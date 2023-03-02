@@ -2,7 +2,7 @@ import React from 'react';
 import * as async_hooks from 'async_hooks';
 import '../style.css';
 import { useState } from 'react';
-import { Modal } from './modal'
+import { AddModal, EditModal } from './modal'
 
 // props sent through are ListName (header) and getData (which stores an object with everything)
 function Input({ listName, getData }) {
@@ -12,7 +12,10 @@ function Input({ listName, getData }) {
   // const [ foodList, setFoodList ] = useState([]);
 
   // declaring state for whether or not my modal box will appear
-  const [ showModal, setShowModal ] = useState(false);
+  const [ addModal, setAddModal ] = useState(false);
+
+  // declaring state for whether edit modal will open
+  const [ editModal, setEditModal ] = useState(false)
   
   // onClick of delete button calling a fetch request to the delete method 
   const deleteItem = async () => {
@@ -33,12 +36,15 @@ function Input({ listName, getData }) {
       {/* listName was sent as a prop from Main and it should render the heading that we passed in */}
       <h1 >{listName}</h1>
       <div className="button-container">
-        <button className="add" onClick={() => setShowModal(true)}>Add</button>
-        <button className="edit" onClick={() => setShowModal(true)}>EDIT</button>
+        <button className="add" onClick={() => setAddModal(true)}>Add</button>
+        <button className="edit" onClick={() => setEditModal(true)}>EDIT</button>
         <button className="delete" onClick={deleteItem}>DELETE</button>
       </div>
-      {showModal && <Modal mode={'create'} setShowModal={setShowModal} foodList={getData} />}
-      {showModal && <Modal mode={'edit'} setShowModal={setShowModal} foodList={getData} />}
+      <div>
+      {addModal && <AddModal mode={'create'} setShowModal={setAddModal} foodList={getData} />}
+      {editModal && <EditModal mode={'edit'} setShowModal={setEditModal} foodList={getData} />}
+      </div>
+
     </div>
   )
 };
