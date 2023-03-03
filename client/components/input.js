@@ -2,7 +2,7 @@ import React from 'react';
 import * as async_hooks from 'async_hooks';
 import '../style.css';
 import { useState } from 'react';
-import { AddModal, EditModal, DeleteModal } from './modal'
+import { AddModal, EditModal, DeleteModal, SomeModal } from './modal'
 
 // props sent through are ListName (header) and getData (which stores an object with everything)
 function Input({ listName, getData }) {
@@ -20,6 +20,8 @@ function Input({ listName, getData }) {
   // declaring state for whether delete modal will open
   const [ deleteModal, setDeleteModal ] = useState(false)
 
+  const [ someModal, setSomeModal ] = useState(false)
+
   return (
     <div className="intro">
       {/* listName was sent as a prop from Main and it should render the heading that we passed in */}
@@ -28,7 +30,7 @@ function Input({ listName, getData }) {
         <button className="add" onClick={() => setAddModal(true)}>ADD</button>
         <button className="edit" onClick={() => setEditModal(true)}>EDIT</button>
         <button className="delete" onClick={() => setDeleteModal(true)}>DELETE</button>
-        <button className="bell" onClick={() => console.log('notfied!')}>
+        <button className="bell" onClick={() => setSomeModal(true)}>
           <img src="https://static.vecteezy.com/system/resources/thumbnails/001/505/138/small/notification-bell-icon-free-vector.jpg" 
             height='10px'
             width='10px'
@@ -39,6 +41,7 @@ function Input({ listName, getData }) {
       {addModal && <AddModal mode={'create'} setShowModal={setAddModal} getData={getData} />}
       {editModal && <EditModal mode={'edit'} setShowModal={setEditModal} getData={getData} />}
       {deleteModal && <DeleteModal mode={'delete'} setShowModal={setDeleteModal} getData={getData} />}
+      {someModal && <SomeModal setShowModal={setSomeModal}/>}
       </div>
     </div>
   )

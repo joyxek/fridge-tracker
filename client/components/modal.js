@@ -233,4 +233,14 @@ const DeleteModal = ({ mode, setShowModal, getData }) => {
   )
 };
 
-export { AddModal, EditModal, DeleteModal };
+const SomeModal = ({ setShowModal }) => {
+  return (
+    <div>
+      <button className="x-button" onClick={() => setShowModal(false)}>X</button>
+      <h1>
+        Technically this should do something
+      </h1>
+    </div>
+  )
+}
+export { AddModal, EditModal, DeleteModal, SomeModal };
