@@ -15,7 +15,7 @@ app.use(express.json());
 
 // when a get request is sent to this endpoint
 app.get('/foodlist/:userEmail', async (req,res) => {
-  const { user_email } = req.params;
+  const user_email = 'joyce@test.com';
   // console.log(userEmail);
   try {
     const food = await pool.query('SELECT * FROM foods WHERE user_email = $1', [user_email])
@@ -47,6 +47,7 @@ app.put('/foodlist/:food', async (req,res) => {
     const editFoods = await pool.query('UPDATE foods SET user_email = $1, food = $2, date = $3, expiration = $4 WHERE food = $2;',
       [user_email, food, date, expiration]
     )
+    console.log(`this is the item that you edited: ${food}`)
     res.json(editFoods);
   } catch (err) {
     console.log('error editing grocery item')
@@ -56,6 +57,7 @@ app.put('/foodlist/:food', async (req,res) => {
 // delete a food item
 app.delete('/foodlist/:food', async (req,res) => {
   const { food } = req.params;
+  console.log(req.params.food);
   try {
     const deletedFood = await pool.query('DELETE FROM foods WHERE food = $1;', [food]);
     console.log(`deleted ${food}`);

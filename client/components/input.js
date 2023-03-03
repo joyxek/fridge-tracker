@@ -19,18 +19,23 @@ function Input({ listName, getData }) {
   
   // declaring state for whether delete modal will open
   const [ deleteModal, setDeleteModal ] = useState(false)
- 
-  
+
   return (
     <div className="intro">
       {/* listName was sent as a prop from Main and it should render the heading that we passed in */}
-      <h1 >{listName}</h1>
+      <h1 className="main-header">{listName}</h1>
       <div className="button-container">
-        <button className="add" onClick={() => setAddModal(true)}>Add</button>
+        <button className="add" onClick={() => setAddModal(true)}>ADD</button>
         <button className="edit" onClick={() => setEditModal(true)}>EDIT</button>
         <button className="delete" onClick={() => setDeleteModal(true)}>DELETE</button>
+        <button className="bell" onClick={() => console.log('notfied!')}>
+          <img src="https://static.vecteezy.com/system/resources/thumbnails/001/505/138/small/notification-bell-icon-free-vector.jpg" 
+            height='10px'
+            width='10px'
+          ></img></button>
       </div>
-      <div>
+      <div className="modals">
+        {/* how to do conditional rendering */}
       {addModal && <AddModal mode={'create'} setShowModal={setAddModal} getData={getData} />}
       {editModal && <EditModal mode={'edit'} setShowModal={setEditModal} getData={getData} />}
       {deleteModal && <DeleteModal mode={'delete'} setShowModal={setDeleteModal} getData={getData} />}

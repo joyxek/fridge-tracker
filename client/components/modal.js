@@ -54,6 +54,7 @@ const handleChange = (e) => {
 
           {/* render your already existing database */}
           <h3>here's what you already have: </h3>
+          <p>⚠️in the next version of this application it should show the updated database⚠️</p>
 
         </div>
 
@@ -183,7 +184,7 @@ const DeleteModal = ({ mode, setShowModal, getData }) => {
   // onClick of delete button calling a fetch request to the delete method 
   const deleteData = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/foodlist/${getData.food}`, {
+      const response = await fetch(`http://localhost:8000/foodlist/${getData.id}`, {
         method: 'DELETE'
       })
       if (response.status === 200) {
@@ -225,7 +226,7 @@ const DeleteModal = ({ mode, setShowModal, getData }) => {
             name="food"
             onChange={handleChange}
           />
-          <input className="x-button" type="Submit" onClick={deleteData} />
+          <input className="x-button" type="Submit" value="Delete" onClick={deleteData} />
         </form>
       </div>
     </div>

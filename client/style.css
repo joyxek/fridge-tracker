@@ -23,8 +23,19 @@ body {
   border-radius: 5px;
 }
 
+.main-header{
+  display: flex;
+  justify-content: center;
+}
+ 
+.modals {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .button-container {
   display: flex;
+  justify-content: center;
 }
 
 /* houses the 'add' 'edit' 'delete' button */
@@ -48,6 +59,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 10px 10px 10px 10px;
+  margin-top: 20px;
+  border: solid rgba(228, 216, 109, 0.674) 1px;
 }
 
 .any-input {
@@ -56,7 +70,7 @@ body {
   margin: 0 5px;
   padding: 5px 10px;
   border-radius: 5px;
-  background-color: rgb(245, 229, 208);
+  background-color: rgba(245, 229, 208, 0.38);
   font-size: 10px;
 }
 
