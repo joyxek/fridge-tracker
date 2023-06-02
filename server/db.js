@@ -7,6 +7,6 @@ const pool = new Pool({
   host: process.env.HOST,
   port: process.env.DBPORT,
   database: 'fooditems'
-});
+})
 
 module.exports = pool;
